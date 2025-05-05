@@ -6,7 +6,7 @@
 
 ## 🌐 Live Preview
 
-> _Coming soon
+> Coming soon
 
 ---
 
@@ -74,23 +74,23 @@ Localize the app to support regional languages for broader accessibility.
 CivicEye/
 │
 ├── Backend/
-│ ├── Controllers/ # Route logic (users, complaints)
-│ ├── Models/ # Mongoose schemas
-│ ├── Routes/ # Express routes
-│ ├── utils/ # Utility functions
-│ ├── proofs/ # Uploaded images/files
-│ ├── .env # Environment variables
-│ ├── multer.js # File upload config
-│ └── server.js # Entry point
+│   ├── Controllers/          # Route logic (users, complaints)
+│   ├── Models/               # Mongoose schemas
+│   ├── Routes/               # Express routes
+│   ├── utils/                # Utility functions
+│   ├── proofs/               # Uploaded images/files
+│   ├── .env                  # Environment variables
+│   ├── multer.js             # File upload config
+│   └── server.js             # Entry point
 │
 ├── Frontend/civiceye/
-│ ├── public/ # Static assets
-│ ├── src/ # All React source files
-│ │ ├── assets/ # Images, logos
-│ │ ├── components/ # Reusable UI components
-│ │ ├── pages/ # Main views (Dashboard, Complaints, etc.)
-│ ├── index.html # Base HTML
-│ ├── tailwind.config.js # Tailwind setup
-│ └── vite.config.js # Vite bundler config
+│   ├── public/               # Static assets
+│   ├── src/                  # All React source files
+│   │   ├── assets/           # Images, logos
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Main views (Dashboard, Complaints, etc.)
+│   ├── index.html            # Base HTML
+│   ├── tailwind.config.js    # Tailwind setup
+│   └── vite.config.js        # Vite bundler config
 │
-└── README.md # You're reading it 🙂
+└── README.md                 # You're reading it 🙂
