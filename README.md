@@ -71,4 +71,27 @@ Localize the app to support regional languages for broader accessibility.
 
 ## 📁 Folder Structure
 
-<pre> <code>```plaintext CivicEye/ ├── Backend/ │ ├── Controllers/ # Route logic (users, complaints) │ ├── Models/ # Mongoose schemas │ ├── Routes/ # Express routes │ ├── utils/ # Utility functions │ ├── proofs/ # Uploaded images/files │ ├── .env # Environment variables │ ├── multer.js # File upload config │ └── server.js # Entry point │ ├── Frontend/ │ ├── public/ # Static assets │ ├── src/ │ │ ├── assets/ # Images, logos │ │ ├── components/ # Reusable UI components │ │ ├── pages/ # Main views (Dashboard, Complaints, etc.) │ ├── index.html # Base HTML │ ├── tailwind.config.js # Tailwind setup │ └── vite.config.js # Vite bundler config │ └── README.md # You're reading it 🙂 ```</code> </pre>
+```plaintext
+CivicEye/
+├── Backend/
+│   ├── Controllers/          # Route logic (users, complaints)
+│   ├── Models/               # Mongoose schemas
+│   ├── Routes/               # Express routes
+│   ├── utils/                # Utility functions
+│   ├── proofs/               # Uploaded images/files
+│   ├── .env                  # Environment variables
+│   ├── multer.js             # File upload config
+│   └── server.js             # Entry point
+│
+├── Frontend/
+│   ├── public/               # Static assets
+│   ├── src/
+│   │   ├── assets/           # Images, logos
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Main views (Dashboard, Complaints, etc.)
+│   ├── index.html            # Base HTML
+│   ├── tailwind.config.js    # Tailwind setup
+│   └── vite.config.js        # Vite bundler config
+│
+└── README.md                 # You're reading it 🙂
+```
