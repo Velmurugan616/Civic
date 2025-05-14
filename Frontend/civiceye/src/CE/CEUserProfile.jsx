@@ -5,6 +5,8 @@ import spinner from '../assets/spinner.gif';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+
 export const CEUserProfile = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -40,7 +42,7 @@ export const CEUserProfile = () => {
     const fetchUserData = async () => {
         try {
             if (!userid) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userid}`);
+            const response = await axios.get(`${BASE_URL}/user/viewuser/${userid}`);
             if (response) {
                 setFormData({
                     name: response.data.name || '',
@@ -72,7 +74,7 @@ export const CEUserProfile = () => {
     const submit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://127.0.0.1:6969/user/update/${userid}`, formData);
+            const response = await axios.put(`${BASE_URL}/user/update/${userid}`, formData);
             toast.success(response.data.message);
             fetchUserData();
         } catch (error) {
@@ -84,7 +86,7 @@ export const CEUserProfile = () => {
     // Delete account
     const deleteAccount = async () => {
         try {
-            const response = await axios.delete(`http://127.0.0.1:6969/user/delete/${userid}`);
+            const response = await axios.delete(`${BASE_URL}/user/delete/${userid}`);
             toast.success(response.data.message);
             setPopupOpen(false);
             logout();

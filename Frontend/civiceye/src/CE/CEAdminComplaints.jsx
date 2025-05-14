@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import spinner from '../assets/spinner.gif';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
 
 export const CEAdminComplaints = () => {
 
@@ -23,7 +24,7 @@ export const CEAdminComplaints = () => {
     const fetchLoggedUserData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+            const response = await axios.get(`${BASE_URL}user/viewuser/${userId}`);
             if (response) {
                 setLoggedUserData(response.data);
             }
@@ -36,7 +37,7 @@ export const CEAdminComplaints = () => {
     const fetchComplaintData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/complaint/getall/${userId}`);
+            const response = await axios.get(`${BASE_URL}/complaint/getall/${userId}`);
             if (response) {
                 // console.log(response.data);
                 // setcomplaintlist(response.data);
@@ -104,7 +105,7 @@ export const CEAdminComplaints = () => {
             return toast.error("Please select a status!");
         }
         try {
-            const response = await axios.put(`http://127.0.0.1:6969/complaint/update/${complaintId}`, {
+            const response = await axios.put(`${BASE_URL}/complaint/update/${complaintId}`, {
                 status: updatedata.status,
             });
 

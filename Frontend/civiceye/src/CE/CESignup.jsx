@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
 
 export const CESignup = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const CESignup = () => {
 
     try {
       console.table(signindata)
-      let response = await axios.post('http://127.0.0.1:6969/user/register', signindata)
+      let response = await axios.post(`${BASE_URL}/user/register`, signindata)
       console.log(response.data);
       toast.success(response.data.message);
       setTimeout(() => {

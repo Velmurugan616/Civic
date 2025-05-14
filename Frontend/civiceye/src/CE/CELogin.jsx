@@ -23,7 +23,7 @@ export const CELogin = () => {
         event.preventDefault()
         try {
             console.table(logindata)
-            const response = await axios.post(`${BASE_URL }/user/login`, logindata);
+            const response = await axios.post(`${BASE_URL}/user/login`, logindata);
 
             console.log(response);
             // console.log(response.data.token);

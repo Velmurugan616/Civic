@@ -10,6 +10,8 @@ import car2 from '../assets/carousel2.jpg' // Import the Carousel Image
 import car3 from '../assets/carousel3.jpg' // Import the Carousel Image
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+
 export const CEGuestHomePage = () => {
 
     AOS.init(); // Initialize AOS Library
@@ -44,7 +46,7 @@ export const CEGuestHomePage = () => {
     const [feedbacks, setfeedbacks] = useState('') // feedbacks state
     const fetchfeedbacks = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/feedback/getall`);
+            const response = await axios.get(`${BASE_URL}/feedback/getall`);
             if (response) {
                 // console.log("R", response.data);
                 setfeedbacks(response.data);
@@ -69,7 +71,7 @@ export const CEGuestHomePage = () => {
     const [stats, setStats] = useState(null); // Initially set to null
     const fetchComplaintStats = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:6969/complaint/stats");
+            const response = await axios.get(`${BASE_URL}/complaint/stats`);
             if (response) {
                 // console.log(response.data.stats);
                 setStats(response.data.stats);

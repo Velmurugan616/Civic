@@ -5,6 +5,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+
 export const CEAdminDashboard = () => {
   const navigate = useNavigate();
   const userId = localStorage.getItem('id');
@@ -19,7 +21,7 @@ export const CEAdminDashboard = () => {
   const fetchLoggedUserData = async () => {
     try {
       if (!userId) return;
-      const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+      const response = await axios.get(`${BASE_URL}/user/viewuser/${userId}`);
       if (response) {
         setLoggedUserData(response.data);
       }
@@ -68,7 +70,7 @@ export const CEAdminDashboard = () => {
 
   const fetchComplaintStats = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:6969/complaint/stats");
+      const response = await axios.get(`${BASE_URL}/complaint/stats`);
       if (response) {
         setStats(response.data.stats);
         console.log(response.data.stats);

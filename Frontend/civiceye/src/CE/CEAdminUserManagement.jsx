@@ -4,6 +4,8 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+
 export const CEAdminUserManagement = () => {
 
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ export const CEAdminUserManagement = () => {
   const fetchLoggedUserData = async () => {
     try {
       if (!userId) return;
-      const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+      const response = await axios.get(`${BASE_URL}/user/viewuser/${userId}`);
       if (response) {
         setLoggedUserData(response.data);
       }
@@ -34,7 +36,7 @@ export const CEAdminUserManagement = () => {
   const fetchUserData = async () => {
     try {
       if (!userId) return;
-      const response = await axios.get(`http://127.0.0.1:6969/user/viewall/${userId}`);
+      const response = await axios.get(`${BASE_URL}/user/viewall/${userId}`);
       if (response) {
         setUsers(response.data.users);
         // console.log(users);

@@ -11,6 +11,8 @@ import car3 from '../assets/carousel3.jpg' // Import the Carousel Image
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+
 export const CEUserHomePage = () => {
 
     AOS.init(); // Initialize AOS Library
@@ -56,7 +58,7 @@ export const CEUserHomePage = () => {
     const fetchUserData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+            const response = await axios.get(`${BASE_URL}/user/viewuser/${userId}`);
             if (response) {
                 setloggeduserdata(response.data);
             }
@@ -106,7 +108,7 @@ export const CEUserHomePage = () => {
         // console.log("FormData", formData);
 
         try {
-            const response = await axios.post(`http://127.0.0.1:6969/complaint/add`, formData,
+            const response = await axios.post(`${BASE_URL}/complaint/add`, formData,
                 {
                     headers: { "Content-Type": "multipart/form-data" },
                 }
@@ -127,7 +129,7 @@ export const CEUserHomePage = () => {
     //feedback fetch
     const fetchfeedbacks = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/feedback/getall`);
+            const response = await axios.get(`${BASE_URL}/feedback/getall`);
             if (response) {
                 // console.log("R", response.data);
                 setfeedbacks(response.data);
@@ -155,7 +157,7 @@ export const CEUserHomePage = () => {
 
         try {
             console.table(feedbackPayload);
-            const response = await axios.post("http://127.0.0.1:6969/feedback/post", feedbackPayload);
+            const response = await axios.post(`${BASE_URL}/feedback/post`, feedbackPayload);
             console.log(response);
             toast.success("Feedback submitted successfully!");
             setFeedbackData({ description: "" }); // Clear input after submission
@@ -189,7 +191,7 @@ export const CEUserHomePage = () => {
     const [stats, setStats] = useState(null); // Initially set to null
     const fetchComplaintStats = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:6969/complaint/stats");
+            const response = await axios.get(`${BASE_URL}/complaint/stats`);
             if (response) {
                 // console.log(response.data.stats);
                 setStats(response.data.stats);
