@@ -83,17 +83,15 @@ CivicEye/
 │   ├── multer.js             # File upload config
 │   └── server.js             # Entry point
 │
-├── Frontend/civiceye
-│   ├── node_modules/          # Project dependencies
-│   ├── public/                # Static assets
-│   ├── src/                   # Source code (components, pages, etc.)
-│   ├── eslint.config.js       # ESLint configuration
-│   ├── index.html             # Base HTML file
-│   ├── package.json           # Project metadata and scripts
-│   ├── package-lock.json      # Exact dependency versions
-│   ├── tailwind.config.js     # Tailwind CSS configuration
-│   └── vite.config.js         # Vite bundler configuration
+├── Frontend/
+│   ├── public/               # Static assets
+│   ├── src/
+│   │   ├── assets/           # Images, logos
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Main views (Dashboard, Complaints, etc.)
+│   ├── index.html            # Base HTML
+│   ├── tailwind.config.js    # Tailwind setup
+│   └── vite.config.js        # Vite bundler config
 │
-└── README.md                  # You're reading it 🙂
-
+└── README.md                 # You're reading it 🙂
 ```
