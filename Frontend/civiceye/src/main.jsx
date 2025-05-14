@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './index.css'
-// import App from './App.jsx'
 import { CELogin } from './CE/CELogin.jsx'
 import { CESignup } from './CE/CESignup.jsx'
 import { CEGuestHomePage } from './CE/CEGuestHomePage.jsx'
@@ -36,7 +35,6 @@ createRoot(document.getElementById('root')).render(
  
     </BrowserRouter>
 
-    {/* <App /> */}
   </StrictMode>
 
   ,)
