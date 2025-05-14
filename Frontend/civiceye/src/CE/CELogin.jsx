@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+
+
 export const CELogin = () => {
 
     const navigate = useNavigate();
 
     const userId = localStorage.getItem('id'); // Get the user id from local storage 
-
 
     const [logindata, setlogindata] = useState('')
 
@@ -21,7 +23,7 @@ export const CELogin = () => {
         event.preventDefault()
         try {
             console.table(logindata)
-            const response = await axios.post('http://127.0.0.1:6969/user/login', logindata);
+            const response = await axios.post(`${BASE_URL }/user/login`, logindata);
 
             console.log(response);
             // console.log(response.data.token);
