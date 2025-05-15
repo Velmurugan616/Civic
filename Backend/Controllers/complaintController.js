@@ -53,7 +53,7 @@ export async function getallComplaints(req, res) {  // Get All Complaints
 
         const updatedComplaints = complaints.map((comp) => ({
             ...comp._doc,
-            proof: comp.proof ? `http://${RENDER_HOST}:${PORT}/proofs/${comp.userId}/${comp.proof}` : null,
+            proof: comp.proof ? `${RENDER_HOST}/proofs/${comp.userId}/${comp.proof}` : null,
         }));
 
         return res.status(200).json(updatedComplaints);
@@ -71,7 +71,7 @@ export async function mycomplaints(req, res) { // Get complaints by userId
 
         const updatedComplaints = complaints.map((comp) => ({
             ...comp._doc,
-            proof: comp.proof ? `${RENDER_HOST}:${PORT}/proofs/${comp.userId}/${comp.proof}` : null,
+            proof: comp.proof ? `${RENDER_HOST}/proofs/${comp.userId}/${comp.proof}` : null,
         }));
 
         if (!updatedComplaints) {
