@@ -4,7 +4,7 @@ import User from "../Models/userSchema.js";
 import 'dotenv/config'
 
 const PORT = process.env.PORT || 4000
-const RENDER_HOST = process.env.RENDER_HOST || "localhost";
+const RENDER_HOST = process.env.RENDER_HOST;
 
 
 export async function addComplaint(req, res) {  // Add Complaint
