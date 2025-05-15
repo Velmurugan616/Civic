@@ -18,6 +18,7 @@ const CEMyComplaints = () => {
 
 
     const [complaints, setComplaints] = useState([]); // State to store complaints
+    
     const [filteredComplaints, setFilteredComplaints] = useState([]); // State for filtered complaints
     const [loading, setLoading] = useState(true); // State to handle loading
     const [currentPage, setCurrentPage] = useState(1);
