@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import spinner from '../assets/spinner.gif';
 import celogofullpng from '../assets/celogofull.png'; // Import the CivicEye Logo
 
-const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const CEMyComplaints = () => {
     const navigate = useNavigate();
@@ -58,27 +58,30 @@ const CEMyComplaints = () => {
     };
 
 
-    const downloadProof = async (fileUrl) => {
-        try {
-            const response = await fetch(fileUrl);
-            if (!response.ok) throw new Error("Failed to fetch file");
+    const downloadProof = async (filePath) => {
+    try {
+        const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const fullUrl = `${baseURL}/proofs/${filePath}`;
 
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
+        const response = await fetch(fullUrl);
+        if (!response.ok) throw new Error("Failed to fetch file");
 
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = fileUrl.split("/").pop(); // Extract filename from URL
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
 
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error("Error downloading file:", error);
-            toast.error("Download failed. Try again.");
-        }
-    };
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filePath.split("/").pop(); // filename only
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Error downloading file:", error);
+        toast.error("Download failed. Try again.");
+    }
+};
 
 
 
@@ -263,7 +266,7 @@ const CEMyComplaints = () => {
                                                 <td className="px-6 py-4">
                                                     <div className="flex justify-center space-x-2">
                                                         <a
-                                                            href={complaint.proof}
+                                                            href={`${BASE_URL}/proofs/${complaint.proof.split("/proofs/")[1]}`}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-blue-700 bg-blue-50 rounded-md hover:bg-blue-100 transition"
@@ -276,7 +279,14 @@ const CEMyComplaints = () => {
                                                             View
                                                         </a>
                                                         <button
-                                                            onClick={() => downloadProof(complaint.proof)}
+                                                            onClick={() => {
+  const filePath = complaint.proof.split("/proofs/")[1]; // Get relative path
+  if (filePath) {
+    downloadProof(filePath); // Pass only the filename
+  } else {
+    toast.error("Invalid file path");
+  }
+}}
                                                             className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-md hover:bg-gray-100 transition border border-gray-200"
                                                             title="Download Proof"
                                                         >

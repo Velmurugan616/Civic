@@ -4,7 +4,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
-const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const CEAdminUserManagement = () => {
 

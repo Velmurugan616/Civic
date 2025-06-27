@@ -1,0 +1,6 @@
+{
+  "appId": "com.civiceye.app",
+  "appName": "civiceye",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

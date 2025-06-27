@@ -9,7 +9,8 @@ export async function initial(req, res) {
     res.send("YUPPPPPPP");
 }
 
-export async function login(req, res) { // Login Function
+export async function login(req, res) { 
+    console.log("JWTKEY is:", process.env.JWTKEY);// Login Function
     try {
         let { email, password } = req.body;
         if (!email || !password) {

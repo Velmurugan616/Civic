@@ -1,0 +1,10 @@
+# Node
+node_modules/
+.env
+
+# Vite/React
+Frontend/node_modules/
+Frontend/dist/
+
+# VSCode
+.vscode/

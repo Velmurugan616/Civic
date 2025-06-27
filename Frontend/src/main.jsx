@@ -12,6 +12,8 @@ import { CEAdminDashboard } from './CE/CEAdminDashboard.jsx'
 import { CEAdminUserManagement } from './CE/CEAdminUserManagement.jsx'
 import { CEAdminComplaints } from './CE/CEAdminComplaints.jsx'
 import { CEAdminFeedback } from './CE/CEAdminFeedback.jsx'
+import { CEAutoRedirect } from './CE/CEAutoRedirect.jsx';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,7 +21,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
  
       <Routes>
-        <Route path="/" element={<Navigate to="/landing" />} />   // Redirect to landing page
+        <Route path="/" element={<CEAutoRedirect />} />  // Redirect to landing page
         <Route path='/landing' element={<CEGuestHomePage />} />
         <Route path='/home' element={<CEUserHomePage />} />
         <Route path="/signin" element={<CELogin />} />

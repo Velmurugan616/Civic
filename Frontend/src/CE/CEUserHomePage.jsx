@@ -11,7 +11,7 @@ import car3 from '../assets/carousel3.jpg' // Import the Carousel Image
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const CEUserHomePage = () => {
 

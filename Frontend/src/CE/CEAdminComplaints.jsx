@@ -5,7 +5,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import spinner from '../assets/spinner.gif';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_URL|| "http://localhost:5000";
+console.log("BASE_URL is:", BASE_URL);
 
 export const CEAdminComplaints = () => {
 
@@ -20,11 +21,10 @@ export const CEAdminComplaints = () => {
             navigate('/landing');
         }
     }, []);
-
-    const fetchLoggedUserData = async () => {
+     const fetchLoggedUserData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`${BASE_URL}user/viewuser/${userId}`);
+            const response = await axios.get(`${BASE_URL}/user/viewuser/${userId}`);
             if (response) {
                 setLoggedUserData(response.data);
             }
@@ -120,30 +120,32 @@ export const CEAdminComplaints = () => {
         }
     };
 
-    const downloadProof = async (fileUrl) => {
-        try {
-            const response = await fetch(fileUrl);
-            if (!response.ok) throw new Error("Failed to fetch file");
+   const downloadProof = async (filePath) => {
+    try {
+        const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const fullUrl = `${baseURL}/proofs/${filePath}`;
 
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
+        const response = await fetch(fullUrl);
+        if (!response.ok) throw new Error("Failed to fetch file");
 
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = fileUrl.split("/").pop(); // Extract filename from URL
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error("Error downloading file:", error);
-            toast.error("Download failed. Try again.");
-        }
-    };
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
 
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filePath.split("/").pop(); // filename only
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
 
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Error downloading file:", error);
+        toast.error("Download failed. Try again.");
+    }
+};
 
-    // Pagination Logic
+// Pagination Logic
     const indexOfLastComplaint = currentPage * complaintsPerPage;
     const indexOfFirstComplaint = indexOfLastComplaint - complaintsPerPage;
     const currentComplaints = filteredComplaints.slice(indexOfFirstComplaint, indexOfLastComplaint);
@@ -298,11 +300,22 @@ export const CEAdminComplaints = () => {
 
                                                                     {/* Download Proof Button */}
                                                                     <button
-                                                                        onClick={() => downloadProof(com.proof)}
-                                                                        className="inline-flex justify-center items-center w-10 h-10 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-                                                                    >
-                                                                        <img className="w-6 h-6" src="https://img.icons8.com/?size=100&id=82829&format=png&color=FFFFFF" />
-                                                                    </button>
+  onClick={() => {
+    const filePath = com.proof.split("/proofs/")[1]; // extract only the filename
+    if (filePath) {
+      downloadProof(filePath);
+    } else {
+      toast.error("Invalid file path");
+    }
+  }}
+  className="inline-flex justify-center items-center w-10 h-10 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+>
+  <img
+    className="w-6 h-6"
+    src="https://img.icons8.com/?size=100&id=82829&format=png&color=FFFFFF"
+    alt="Download Icon"
+  />
+</button>
 
 
                                                                     {/* Update Status Button */}

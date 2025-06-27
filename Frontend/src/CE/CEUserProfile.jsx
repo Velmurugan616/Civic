@@ -5,7 +5,7 @@ import spinner from '../assets/spinner.gif';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const CEUserProfile = () => {
     const navigate = useNavigate();

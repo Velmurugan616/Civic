@@ -10,7 +10,7 @@ import car2 from '../assets/carousel2.jpg' // Import the Carousel Image
 import car3 from '../assets/carousel3.jpg' // Import the Carousel Image
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const CEGuestHomePage = () => {
 
@@ -310,26 +310,30 @@ export const CEGuestHomePage = () => {
                     swipeable
                     stopOnHover={false}
                 >
-                    {feedbacks.length > 0 ? (
-                        feedbacks
-                            .filter((feedback) => feedback.status === "Accepted") // Only show "Accepted" feedbacks
-                            .slice()
-                            .reverse()
-                            .map((feedback) => (
-                                <div key={feedback._id} className="bg-white p-6 md:p-8 rounded-xl shadow-md my-2 mx-4 text-center">
-                                    <p className="text-gray-700 text-lg leading-relaxed italic">
-                                        "{feedback.description || "User Friendly"}"
-                                    </p>
-                                    <p className="text-[#00B9FF] font-semibold text-base mt-3">
-                                        - {feedback.userName || "Random User"}
-                                    </p>
-                                </div>
-                            ))
-                    ) : (
-                        <div className="p-6 text-center text-gray-500">
-                            No feedback available.
-                        </div>
-                    )}
+                    {Array.isArray(feedbacks) && feedbacks.length > 0 ? (
+    feedbacks
+        .filter((feedback) => feedback.status === "Accepted")
+        .slice()
+        .reverse()
+        .map((feedback) => (
+            <div
+                key={feedback._id}
+                className="bg-white p-6 md:p-8 rounded-xl shadow-md my-2 mx-4 text-center"
+            >
+                <p className="text-gray-700 text-lg leading-relaxed italic">
+                    "{feedback.description || "User Friendly"}"
+                </p>
+                <p className="text-[#00B9FF] font-semibold text-base mt-3">
+                    - {feedback.userName || "Random User"}
+                </p>
+            </div>
+        ))
+) : (
+    <p className="text-center text-gray-500 italic mt-6">
+        No feedbacks available.
+    </p>
+)}
+
                 </Carousel>
 
             </div>
